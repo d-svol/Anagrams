@@ -23,22 +23,20 @@ public class Anagrams {
     }
 
     private static String reverseWord(String word) {
-        StringBuilder reversWord = new StringBuilder();
-        char[] arrayChar = word.toCharArray();
-        char[] reverseChar = new StringBuffer(word).reverse().toString().toCharArray();
+        StringBuilder stringBuilder = new StringBuilder(); //
 
-        for (int i = 0; i < arrayChar.length; i++) {
-            char is_alphabetic_symbol = reverseChar[i];
-            if (Character.isAlphabetic(is_alphabetic_symbol)) {
-                reversWord.append(is_alphabetic_symbol);
+        for (int i = word.length() - 1; i >= 0; i--) {
+            char ch = word.charAt(i);
+            if (Character.isAlphabetic(ch)) {
+                stringBuilder.append(ch);
             }
         }
-        for (int i = 0; i < arrayChar.length; i++) {
-            char is_special_symbol = arrayChar[i];
-            if (!Character.isAlphabetic(is_special_symbol)) {
-                reversWord.insert(i, is_special_symbol);
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            if (!Character.isAlphabetic(ch)) {
+                stringBuilder.insert(i, ch);
             }
         }
-        return reversWord.toString();
+        return stringBuilder.toString();
     }
 }
