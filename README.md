@@ -12,4 +12,4 @@ All non-letter symbols should stay on the same places:
 
 ### Run
 1) mvn clean package
-2) java -jar target/anagrams-1.0-SNAPSHOT.jar 
+2) java -jar target/anagrams-1.0-SNAPSHOT.jar
