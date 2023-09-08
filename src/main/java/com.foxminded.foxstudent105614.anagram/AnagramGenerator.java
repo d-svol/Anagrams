@@ -4,17 +4,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Anagrams {
-    public String text;
+public class AnagramGenerator {
+    private final String text;
 
-    public Anagrams(String text) {
+
+    public AnagramGenerator(String text) {
         this.text = text;
     }
 
-    public String makeAnagram() {
+
+    public String createAnagram() {
         return splitWords(text)
                 .stream()
-                .map(Anagrams::reverseWord)
+                .map(AnagramGenerator::formulateAnagramForWord)
                 .collect(Collectors.joining(" "));
     }
 
@@ -22,7 +24,7 @@ public class Anagrams {
         return Arrays.asList(text.split(" "));
     }
 
-    private static String reverseWord(String word) {
+    private static String formulateAnagramForWord(String word) {
         StringBuilder stringBuilder = new StringBuilder(); //
 
         for (int i = word.length() - 1; i >= 0; i--) {
