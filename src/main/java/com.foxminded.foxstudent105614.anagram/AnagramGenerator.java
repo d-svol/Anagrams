@@ -7,16 +7,18 @@ import java.util.stream.Collectors;
 public class AnagramGenerator {
     private final String text;
 
-
     public AnagramGenerator(String text) {
         this.text = text;
     }
 
+    public String getText() {
+        return text;
+    }
 
     public String createAnagram() {
         return splitWords(text)
                 .stream()
-                .map(AnagramGenerator::formulateAnagramForWord)
+                .map(this::reverseWordCharacters)
                 .collect(Collectors.joining(" "));
     }
 
@@ -24,8 +26,8 @@ public class AnagramGenerator {
         return Arrays.asList(text.split(" "));
     }
 
-    private static String formulateAnagramForWord(String word) {
-        StringBuilder stringBuilder = new StringBuilder(); //
+    private String reverseWordCharacters(String word) {
+        StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = word.length() - 1; i >= 0; i--) {
             char ch = word.charAt(i);
