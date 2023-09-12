@@ -9,22 +9,21 @@ public class Main {
             printAnagram(scanner);
         } catch (NoSuchElementException e) {
             System.err.println("Input not found. Please enter valid input.");
-        } catch (EmptyInputException e) {
-            System.err.println("Input cannot be empty. Please enter valid input.");
         }
     }
 
-    private static void printAnagram(Scanner scanner) throws EmptyInputException {
-        System.out.print("Enter text: ");
-        String input = scanner.nextLine().trim();
+    private static void printAnagram(Scanner scanner) {
+        System.out.print("Enter text to continue or 'ex' to exit: ");
+        String userInput = scanner.nextLine().trim();
 
-        if (input.isEmpty()) {
-            throw new EmptyInputException();
+        while (!userInput.equals("ex")) {
+            if (userInput.isEmpty()) {
+                System.err.println("Input cannot be empty. Please, enter more than 1 characters.");
+            }
+            AnagramGenerator anagrams = new AnagramGenerator(userInput);
+            System.out.println("Your anagram: " + anagrams.createAnagram());
+            System.out.print("Enter text to continue or 'ex' to exit: ");
+            userInput = scanner.nextLine().trim();
         }
-
-        AnagramGenerator anagrams = new AnagramGenerator(input);
-        String anagram = anagrams.createAnagram();
-
-        System.out.println("Your anagram: " + anagram);
     }
 }
