@@ -1,5 +1,7 @@
 package com.foxminded.foxstudent105614.anagram;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -8,21 +10,23 @@ public class Main {
         try (Scanner scanner = new Scanner(System.in)) {
             printAnagram(scanner);
         } catch (NoSuchElementException e) {
-            System.err.println("Input not found. Please enter valid input.");
+            System.err.println(UserMessage.EMPTY_INPUT);
         }
     }
 
     private static void printAnagram(Scanner scanner) {
-        System.out.print("Enter text to continue or 'ex' to exit: ");
+        System.out.print(UserMessage.CONTINUE_OR_EXIT);
         String userInput = scanner.nextLine().trim();
 
         while (!userInput.equals("ex")) {
-            if (userInput.isEmpty()) {
-                System.err.println("Input cannot be empty. Please, enter more than 1 characters.");
+            if (StringUtils.isEmpty(userInput)) {
+                System.err.print(UserMessage.EMPTY_INPUT);
+                System.out.println();
+            } else {
+                AnagramGenerator anagrams = new AnagramGenerator(userInput);
+                System.out.println(UserMessage.ANAGRAM_PREFIX + anagrams.createAnagram());
             }
-            AnagramGenerator anagrams = new AnagramGenerator(userInput);
-            System.out.println("Your anagram: " + anagrams.createAnagram());
-            System.out.print("Enter text to continue or 'ex' to exit: ");
+            System.out.print(UserMessage.CONTINUE_OR_EXIT);
             userInput = scanner.nextLine().trim();
         }
     }
