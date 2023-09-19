@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AnagramGeneratorTest {
+	private static final String EMPTY_STRING = "";
 
 	@Test
 	void createAnagram_shouldThrowIllegalArgumentException_whenInputIsNull() {
@@ -14,21 +15,21 @@ class AnagramGeneratorTest {
 	void createAnagram_shouldReturnEmptyString_whenInputIsEmpty() {
 		AnagramGenerator emptyAnagramGenerator = new AnagramGenerator("");
 		String result = emptyAnagramGenerator.createAnagram();
-		assertEquals("", result);
+		assertEquals(EMPTY_STRING, result);
 	}
 
 	@Test
 	void createAnagram_shouldReturnEmptyString_whenInputIsSingleSpace() {
 		AnagramGenerator singleSpaceAnagramGenerator = new AnagramGenerator(" ");
 		String result = singleSpaceAnagramGenerator.createAnagram();
-		assertEquals("", result);
+		assertEquals(EMPTY_STRING, result);
 	}
 
 	@Test
 	void createAnagram_shouldReturnEmptyString_whenInputContainsSeveralSpace() {
 		AnagramGenerator severalSpacesAnagramGenerator = new AnagramGenerator("   ");
 		String result = severalSpacesAnagramGenerator.createAnagram();
-		assertEquals("", result);
+		assertEquals(EMPTY_STRING, result);
 	}
 
 	@Test
